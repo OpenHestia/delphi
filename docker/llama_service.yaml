@@ -1,0 +1,18 @@
+services:
+  llama2-service:
+    build:
+        dockerfile: ./Dockerfile
+        target: llamav2
+    volumes:
+      - /${HOME}/models:/models
+    network_mode: host
+    pid: host
+    ipc: host
+    privileged: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

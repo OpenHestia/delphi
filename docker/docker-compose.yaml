@@ -1,0 +1,14 @@
+name: delphi
+
+services:
+  llama2-server:
+    command: ["source /root/.bashrc && lmql serve-model llama.cpp:/models/llama-2-13b.Q5_K_M.gguf"]
+    extends: 
+      file: llama_service.yaml
+      service: llama2-service
+      
+  lmql-playground:
+    command: ["source /root/.bashrc && lmql playground"]
+    extends: 
+      file: llama_service.yaml
+      service: llama2-service
